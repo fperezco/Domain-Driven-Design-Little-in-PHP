@@ -1,0 +1,12 @@
+security:
+    password_hashers:
+        #Fake entity to login due to we are using UserProvideInterfaceInterface
+        App\Infrastructure\Security\Authentication\Model\AuthUser:
+            algorithm: bcrypt
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+    # due to dynamic building of roles and privileges access, no static access_control of Roles here

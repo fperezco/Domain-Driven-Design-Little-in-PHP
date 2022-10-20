@@ -1,0 +1,43 @@
+default:
+  suites:
+    default:
+      paths:
+        - tests/Infrastructure/UI/Http/Rest/BehatFeatures
+      contexts:
+        - behatch:context:json
+        - behatch:context:rest
+        - Behat\MinkExtension\Context\MinkContext
+        - App\Tests\Behat\UserContext
+        - App\Tests\Behat\DeliveryCompanyContext
+        - CustomJsonResponseContext
+        #- DemoContext
+        #- Tests\Infrastructure\UI\Http\Rest\BehatFeatures\bootstrap\DemoContext
+
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      bootstrap: /var/www/html/tests/bootstrap.php
+      kernel:
+        environment: test
+        debug: true
+    Behatch\Extension: ~
+    #Imbo\BehatApiExtension:
+    #  apiClient:
+    #    base_uri: 'http://localhost/'
+    #    timeout: 5.0
+    #    verify: false
+    DAMA\DoctrineTestBundle\Behat\ServiceContainer\DoctrineExtension: ~
+    Behat\MinkExtension:
+      base_url: 'http://localhost/'
+      sessions:
+        default:
+          symfony: ~
+#    DVDoug\Behat\CodeCoverage\Extension:
+#      filter:
+#        include:
+#          directories:
+#            'src': ~
+#      reports:
+#        clover:
+#          target: /var/www/html/coverage-behat.clover
+#        text:
+#          showColors: true

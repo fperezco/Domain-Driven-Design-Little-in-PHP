@@ -1,0 +1,25 @@
+
+users_get:
+  path: /api/users
+  controller: App\UI\Http\Rest\Controller\User\GetUsersController
+  methods: [ GET ]
+
+users_get_dc_names:
+  path: /api/usersdcnames
+  controller: App\UI\Http\Rest\Controller\User\GetUsersWithDCNamesController
+  methods: [ GET ]
+
+users_post:
+  path: /api/users
+  controller: App\UI\Http\Rest\Controller\User\CreateUserController
+  methods: [ POST ]
+
+users_delete:
+  path: /api/users/{uuid}
+  controller: App\UI\Http\Rest\Controller\User\DeleteUserController
+  methods: [ DELETE ]
+
+users_add_task:
+  path: /api/users/{useruuid}/tasks
+  controller: App\UI\Http\Rest\Controller\User\AssignTaskToUserController
+  methods: [ POST ]

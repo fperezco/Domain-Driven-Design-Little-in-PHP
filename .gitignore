@@ -1,0 +1,60 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+.idea
+.docker/db/data
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> sonarQube ###
+/.scannerwork/
+###< sonarQube ###
+
+###> friends-of-behat/symfony-extension ###
+#/behat.yml
+###< friends-of-behat/symfony-extension ###
+
+coverage-behat.clover
+yea.html
+public/upload/datasheets/*.xlsx
+*.clover
+test-report.xml
+.docker/postgresql_data/*
+.docker/sonarqube_data/*
+.docker/sonarqube_bundled-plugins/*
+.docker/sonarqube_extensions/*
+.docker/sonarqube_logs/*
+.docker/sonarqube_temp/*
+.docker/sonarscanner/*
+###> sonar ###
+/.scannerwork/
+###< sonar ###
+tests/Infrastructure/Excel/testFiles/generatedErrorFile.xlsx
+public/upload/documents/ts
+public/upload/documents/ts/*
+public/upload/content/templatearticles/*
+public/upload/content/templatevideos/*
+public/ls/*
+public/ls
+

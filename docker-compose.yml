@@ -1,0 +1,47 @@
+version: '3'
+services:
+  apache-php:
+    build: .docker/apache-php
+    container_name: dddlite_apache_php
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html
+      - /etc/localtime:/etc/localtime:ro
+      #- /etc/timezone:/etc/timezone:ro
+      - .docker/apache-php/datetime.ini:/usr/local/etc/php/conf.d/datetime.ini
+      - .docker/apache-php/vhost.conf:/etc/apache2/sites-available/000-default.conf
+    working_dir: /var/www/html
+    environment:
+      PHP_EXTENSION_XDEBUG: 1
+      PHP_INI_XDEBUG__REMOTE_PORT: 9003
+      PHP_IDE_CONFIG: "serverName=docker_dddlite"
+      XDEBUG_CONFIG: "remote_host=host.docker.internal remote_enable=on"
+    depends_on:
+      - mysql
+      - maildev
+    links:
+      - mysql
+
+  mysql:
+    container_name: dddlite_mysql
+    build: .docker/db
+    restart: always
+    command: mysqld --sql_mode="STRICT_TRANS_TABLES"
+    environment:
+      - MYSQL_DATABASE=dddlite
+      - MYSQL_ROOT_PASSWORD=mysql
+    volumes:
+      - .docker/db/data/mysql:/var/lib/mysql
+      - .docker/db/conf.d:/etc/mysql/conf.d #to store mysql queries
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+
+  maildev:
+    image: djfarrelly/maildev
+    container_name: dddlite_maildev
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    ports:
+      - 8001:80

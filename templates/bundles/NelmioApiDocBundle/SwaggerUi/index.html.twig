@@ -1,0 +1,9 @@
+{# Just a simple template to order swagger tags #}
+
+{% extends '@!NelmioApiDoc/SwaggerUi/index.html.twig' %}
+
+{% block swagger_initialization %}
+    <script  type="text/javascript">
+        window.onload = loadSwaggerUI({tagsSorter: 'alpha'});
+    </script>
+{% endblock swagger_initialization %}

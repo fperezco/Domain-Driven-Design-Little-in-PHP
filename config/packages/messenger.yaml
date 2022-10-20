@@ -1,0 +1,27 @@
+framework:
+    messenger:
+        default_bus: command.bus
+        buses:
+            command.bus:
+                middleware:
+                    #Wrap your handler inside a Doctrine transaction. If the handler throws an exception,
+                    #it will roll back the transaction. And if no exception is thrown, it will commit it.
+                    #secure ACID
+                    - doctrine_transaction
+            query.bus:
+                #middleware:
+            event.bus:
+                default_middleware: allow_no_handlers
+
+        transports:
+        # https://symfony.com/doc/current/messenger.html#transport-configuration
+            async: '%env(MESSENGER_TRANSPORT_DSN)%'
+        # failed: 'doctrine://default?queue_name=failed'
+        # sync: 'sync://'
+
+        routing:
+            # Route your messages to the transports
+            'App\Domain\User\Event\UserCreatedEvent': async
+            'App\Domain\User\Event\TaskCreatedEvent': async
+
+

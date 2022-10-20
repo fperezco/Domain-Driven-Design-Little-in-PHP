@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity repository-class="App\Infrastructure\Persistence\Doctrine\Repository\User\UserRepository"
+            name="App\Domain\User\Entity\User"
+            table="users">
+<!--            change-tracking-policy="DEFERRED_EXPLICIT">-->
+        <id name="uuid" type="uuid" column="uuid" length="36" />
+        <field name="deliveryCompany" type="uuid" column="deliveryCompany"/>
+        <embedded name="username" class="App\Domain\User\Entity\UserUsername" use-column-prefix="false" />
+        <embedded name="firstname" class="App\Domain\User\Entity\UserFirstName" use-column-prefix="false" />
+        <embedded name="lastname" class="App\Domain\User\Entity\UserLastName" use-column-prefix="false" />
+        <embedded name="email" class="App\Domain\User\Entity\UserEmail" use-column-prefix="false" />
+        <field name="version" type="integer" version="true" />
+        <field name="deletionDate" type="datetime" column="deletionDate" nullable="true"/>
+        <one-to-many field="tasks" target-entity="App\Domain\Task\Entity\Task" mapped-by="responsible" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,4 @@
+create_action:
+  path: /api/actions
+  controller: App\UI\Http\Rest\Controller\Action\CreateActionController
+  methods: [ POST ]

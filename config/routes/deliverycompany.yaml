@@ -1,0 +1,5 @@
+
+deliverycompanies_get:
+  path: /api/deliverycompanies
+  controller: App\UI\Http\Rest\Controller\DeliveryCompany\GetDeliveryCompaniesController
+  methods: [ GET ]
