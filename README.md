@@ -40,3 +40,10 @@ Type `docker-compose up -d`
 From inside docker (docker-compose exec apache-php bash )
 
 `php bin/console doctrine:database:create && php bin/console doctrine:migrations:migrate -n`
+
+
+### Apache ab test commands for test concurrency
+
+`ab -p tests/Infrastructure/Concurrency/post_task.json -T application/json  -c 1 -n 30 http://127.0.0.1/api/users/00000000-c000-c000-c000-000000000001/tasks`
+
+`ab -p tests/Infrastructure/Concurrency/post_action.json -T application/json  -c 1 -n 30 http://127.0.0.1/api/actions`
